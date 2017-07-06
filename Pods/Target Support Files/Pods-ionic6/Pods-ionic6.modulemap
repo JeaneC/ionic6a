@@ -1,0 +1,6 @@
+framework module Pods_ionic6 {
+  umbrella header "Pods-ionic6-umbrella.h"
+
+  export *
+  module * { export * }
+}

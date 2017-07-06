@@ -8,23 +8,24 @@
 
 /* Begin PBXBuildFile section */
 		412D46C61F0D87A600E71269 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D46C51F0D87A600E71269 /* AppDelegate.swift */; };
-		412D46C81F0D87A600E71269 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D46C71F0D87A600E71269 /* ViewController.swift */; };
+		412D46C81F0D87A600E71269 /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 412D46C71F0D87A600E71269 /* LoginViewController.swift */; };
 		412D46CB1F0D87A600E71269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412D46C91F0D87A600E71269 /* Main.storyboard */; };
 		412D46CD1F0D87A600E71269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412D46CC1F0D87A600E71269 /* Assets.xcassets */; };
 		412D46D01F0D87A600E71269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412D46CE1F0D87A600E71269 /* LaunchScreen.storyboard */; };
-		4193AFD71F0E9C3000F9724B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4193AFD61F0E9C3000F9724B /* GoogleService-Info.plist */; };
+		4193AFDB1F0E9DCC00F9724B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4193AFDA1F0E9DCC00F9724B /* GoogleService-Info.plist */; };
 		CA976EFF9BA1A9C2D07A5F41 /* Pods_ionic6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		412D46C21F0D87A600E71269 /* ionic6.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = ionic6.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		412D46C51F0D87A600E71269 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		412D46C71F0D87A600E71269 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		412D46C71F0D87A600E71269 /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		412D46CA1F0D87A600E71269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		412D46CC1F0D87A600E71269 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		412D46CF1F0D87A600E71269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		412D46D11F0D87A600E71269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		4193AFD61F0E9C3000F9724B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4193AFD81F0E9CD900F9724B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
+		4193AFDA1F0E9DCC00F9724B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ionic6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB197389190EC97D3F5FD1F7 /* Pods-ionic6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.debug.xcconfig"; sourceTree = "<group>"; };
 		FE1DCF211F3561DC96BCEB05 /* Pods-ionic6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.release.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.release.xcconfig"; sourceTree = "<group>"; };
@@ -64,12 +65,13 @@
 			isa = PBXGroup;
 			children = (
 				412D46C51F0D87A600E71269 /* AppDelegate.swift */,
-				412D46C71F0D87A600E71269 /* ViewController.swift */,
+				412D46C71F0D87A600E71269 /* LoginViewController.swift */,
 				412D46C91F0D87A600E71269 /* Main.storyboard */,
-				4193AFD61F0E9C3000F9724B /* GoogleService-Info.plist */,
 				412D46CC1F0D87A600E71269 /* Assets.xcassets */,
+				4193AFDA1F0E9DCC00F9724B /* GoogleService-Info.plist */,
 				412D46CE1F0D87A600E71269 /* LaunchScreen.storyboard */,
 				412D46D11F0D87A600E71269 /* Info.plist */,
+				4193AFD81F0E9CD900F9724B /* README.md */,
 			);
 			path = ionic6;
 			sourceTree = "<group>";
@@ -154,8 +156,8 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4193AFDB1F0E9DCC00F9724B /* GoogleService-Info.plist in Resources */,
 				412D46D01F0D87A600E71269 /* LaunchScreen.storyboard in Resources */,
-				4193AFD71F0E9C3000F9724B /* GoogleService-Info.plist in Resources */,
 				412D46CD1F0D87A600E71269 /* Assets.xcassets in Resources */,
 				412D46CB1F0D87A600E71269 /* Main.storyboard in Resources */,
 			);
@@ -216,7 +218,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				412D46C81F0D87A600E71269 /* ViewController.swift in Sources */,
+				412D46C81F0D87A600E71269 /* LoginViewController.swift in Sources */,
 				412D46C61F0D87A600E71269 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -7,3 +7,18 @@
 //
 
 import Foundation
+
+class Student {
+    private var _firstName: String!
+    private var _lastName: String!
+    private var _siteLocation: String!
+    
+    //private var _guardians: [<String, String>]!
+    
+    init(firstName: String, lastName: String, siteLocation: String) {
+        self._firstName = firstName
+        self._lastName = lastName
+        self._siteLocation = siteLocation
+
+    }
+}

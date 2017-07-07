@@ -8,5 +8,6 @@ target 'ionic6' do
   # Pods for ionic6
   pod 'Firebase/Core'
   pod 'Firebase/Auth'
+  pod ‘Firebase/Database’
 
 end

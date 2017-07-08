@@ -11,16 +11,15 @@ import UIKit
 class LogsTableViewCell: UITableViewCell {
 
     @IBOutlet weak var studentName: UILabel!
-    
     @IBOutlet weak var pickedUpBy: UILabel!
     @IBOutlet weak var timeIn: UILabel!
-    
     @IBOutlet weak var timeOut: UILabel!
+    @IBOutlet weak var droppedOffBy: UILabel!
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         // Initialization code
     }
-
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 

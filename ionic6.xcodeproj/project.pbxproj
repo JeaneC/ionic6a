@@ -95,10 +95,10 @@
 			isa = PBXGroup;
 			children = (
 				412D46C71F0D87A600E71269 /* LoginViewController.swift */,
+				4193AFFA1F11241B00F9724B /* SiteViewController.swift */,
 				4193AFE01F0EB6BD00F9724B /* MainViewController.swift */,
 				4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */,
 				4193AFF21F0FBADC00F9724B /* LogsViewController.swift */,
-				4193AFFA1F11241B00F9724B /* SiteViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";

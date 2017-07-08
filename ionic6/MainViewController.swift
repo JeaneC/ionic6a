@@ -15,12 +15,15 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var tableView: UITableView!
+    @IBOutlet weak var siteLabel: UILabel!
+    
     var ref: DatabaseReference!
     var ref2: DatabaseReference!
     
-    var options = ["Students","Attendance","History", "Head Count Check"]
+    var options = ["Students","History","Attendance","Head Count Check","Back"]
     var logs = [String]()
     var students = [String]()
+    var studentIDS = [Int]()
     var display = [String]()
     
     var logKey = ""
@@ -34,7 +37,6 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var siteLocation = ""
     var studentsActive = true
     var logsActive = false
-    var attendanceActive = false
     
     
     override func viewDidLoad() {
@@ -42,8 +44,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         ref = Database.database().reference()
         ref2 = Database.database().reference()
         
-        tableView.rowHeight = 30
+        siteLabel.text = self.siteLocation
         
+        tableView.rowHeight = 30
         tableView.dataSource = self
         tableView.delegate = self
         tableView.register(UITableViewCell.self, forCellReuseIdentifier: "options")
@@ -54,117 +57,110 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.display = self.students
         
-
-        //loadStudents()
+        loadLogs()
+        loadStudents()
         
     }
     
     func loadLogs(){
-        //Goes through each date
-        ref2?.child("Jersey").child("Dates").observe(.childAdded, with: { (snapshot) in
+        
+        ref?.child("jDates").observe(.childAdded, with: { (snapshot) in
             
-            
-
-            if !self.logs.contains(snapshot.key){ //If we haven't done this date yet
-                self.logs.append(snapshot.key)
-                
-                let cDate = snapshot.key as? String //This warning is false, since I get errors if I don't do this
-                var dateLog = [LogTrack]()
-
-                
-               let children = snapshot.value as? Dictionary<String,AnyHashable>
-                
-                for student in self.students {
-                    print(children!)
-                    let child = children?[student] as? Dictionary<String, AnyHashable>
-                    let cIn = child?["In"] as? String
-                    let cOut = child?["Out"] as? String
-                    let pUp = child?["Picked Up"] as? String
-                    let newLog = LogTrack(date: cDate!, ins: cIn!, out: cOut!, pickedUp: pUp!, fullName: student)
-                    dateLog.append(newLog)
-
+            //Code to execute when a child is added under "Jersey City"
+            //This value is an Array of dictionaries
+            //JK, that's what I thought, but the snapshots is the array element, making this
+            //Conveniently just the dictionary
+            if let dateDirectory = snapshot.value as? Dictionary<String, AnyHashable> {
+                if let date = dateDirectory["Date"] as? String, !self.logs.contains(date){
+                    //We get the current Date, and if the date is not in the log, then we do everything to add the date date there
+                    
+                    var logsTrack = [LogTrack]() //Fresh new array of logs
+                    if let students = dateDirectory["Students"] as? [Dictionary<String, String>]{
+                        for student in students {
+                            let ins = student["In"]
+                            let outs = student["Out"]
+                            let name = student["Name"]
+                            let pUp = student["Picked Up By"]
+                            let dOff = student["Dropped Off By"]
+                            
+                            let logA = LogTrack(date: date, ins: ins!, out: outs!, pickedUp: pUp!, droppedOff: dOff!, fullName: name!)
+                            
+                            self.lLogs.append(logA)
+                            logsTrack.append(logA)
+                        }
+                    }
+                    
+                    self.logs.append(date)
+                    let historyA = History(date: date, logsB: logsTrack)
+                    self.lHistory.append(historyA)
                 }
-                let nHistory = History(date: cDate!, logsB: dateLog)
-                self.selectedHistory = nHistory
-                self.lHistory.append(nHistory)
-
+                
             }
-            if self.logsActive{
-                self.display = self.logs
-                self.tableView1.reloadData()
-            }
+            self.display = self.logs
         })
-        
-        
-        
+        self.tableView1.reloadData()
     }
-    
     func loadStudents(){
-        ref?.child("Jersey").child("Children").observe(.childAdded, with: { (snapshot) in
+        
+        ref?.child("Jersey City").observe(.childAdded, with: { (snapshot) in
             
-            //Code to execute when a child is added under "Posts"
-            //Take the value from the snapshot and add it to the postData array
+            //Code to execute when a child is added under "Jersey City"
+            //This value is an Array of dictionaries
+            //JK, that's what I thought, but the snapshots is the array element, making this
+            //Conveniently just the dictionary
             
-            //Convert the data into a string
-            if let child = snapshot.value as? Dictionary<AnyHashable, AnyHashable> {
-                
-                let f = child["First Name"] as? String
-                let l = child["Last Name"] as? String
-                let s = " "
-                let siteLocation = "Jersey City"
-                let fullName = f! + s + l!
-                
-                
-                let gList = child["Authorized Guardians"] as? Dictionary<String, Dictionary<String,String>>
-                
-                
-                let studentA = Student(firstName: f!, lastName: l!, siteLocation: siteLocation, gList: gList!)
-                
-                if !self.students.contains(fullName){
-                    self.lStudents.append(studentA)
+            if let child = snapshot.value as? Dictionary<String, Any> {
+                if let ID = child["ID"] as? Int, !self.studentIDS.contains(ID){
+                    //We get the students ID, and if our current ID list does not have the student
+                    //Then we can add the student to the directiory
+                    let f = child["First"] as? String
+                    let l = child["Last"] as? String
+                    let sL = "Jersey City"
+                    let fullName = "\(f!) \(l!)"
+                    let gList = child["Guardians"] as? [Dictionary<String, String>]
+                    
+                    let studentA = Student(firstName: f!, lastName: l!, siteLocation: sL, ID: ID, gList: gList!)
+                    
                     self.students.append(fullName)
+                    self.lStudents.append(studentA)
+                    self.studentIDS.append(ID)
+                    
                 }
-                
-                
             }
-            if self.studentsActive{
-                self.display = self.students
-                
-            }
-            self.tableView1.reloadData()
+            
+            self.display = self.students
+            
         })
     }
     
     //Selected a section
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        //Selected a selection in the Options Pane
         if tableView == self.tableView {
-            
             if indexPath.row == 0 {
                 display = students
                 studentsActive = true
                 logsActive = false
-                attendanceActive = false
                 loadStudents()
+                self.tableView1.reloadData()
                 
             }
             if indexPath.row == 1 {
-                display = students
-                studentsActive = false
-                attendanceActive = true
-                logsActive = false
-                loadStudents()
-                
-            }
-            if indexPath.row == 2 {
                 display = logs
                 studentsActive = false
                 logsActive = true
-                attendanceActive = false
                 loadLogs()
-                print("Got Here")
+                self.tableView1.reloadData()
             }
+            
             tableView1.reloadData()
+            if indexPath.row == 4 {
+                dismiss(animated: true, completion: nil)
+            }
         }
+        
+        //Selected a selection in the Students/Logs pane
         if tableView == self.tableView1 {
             if studentsActive {
                 profileStudent = lStudents[indexPath.row]
@@ -175,7 +171,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 performSegue(withIdentifier: "logs", sender: self)
             }
         }
-
+        
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -183,9 +179,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let ProfileViewContoller = segue.destination as? ProfileViewController
             ProfileViewContoller?.student = profileStudent
         }
+        
         if logsActive{
             let LogsViewContoller = segue.destination as? LogsViewController
-            //LogsViewContoller?.history = selectedHistory //Disable this segue for now
+            LogsViewContoller?.history = selectedHistory
             
         }
     }
@@ -205,16 +202,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if tableView == self.tableView1 {
             cell = UITableViewCell()
+            cell?.textLabel?.text = display[indexPath.row]
+            //                cell?.switchA.alpha = 0
             
-            if attendanceActive{
-                let cellB = AttendnanceTableViewCell()
-                cellB.textLabel?.text = display[indexPath.row]
-                return cellB
-            } else {
-                
-                cell?.textLabel?.text = display[indexPath.row]
-//                cell?.switchA.alpha = 0
-            }
         }
         return cell!
         

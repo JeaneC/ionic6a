@@ -11,8 +11,12 @@ import Foundation
 class Student {
     private var _firstName: String!
     private var _lastName: String!
+    private var _fullName: String!
     private var _siteLocation: String!
-    private var _gList: Dictionary<String, Dictionary<String,String>>!
+    private var _ID: Int!
+    
+    var guardians = [String]()
+
     
     //private var _guardians: [<String, String>]!
     
@@ -24,19 +28,25 @@ class Student {
         return _lastName
     }
     
+    var fullName: String {
+        return _fullName
+    }
     var siteLocation: String {
         return _siteLocation
     }
     
-    var gList: Dictionary<String, Dictionary<String,String>>{
-        return _gList
-    }
-    
-    init(firstName: String, lastName: String, siteLocation: String, gList: Dictionary<String, Dictionary<String,String>>) {
+    init(firstName: String, lastName: String, siteLocation: String, ID: Int, gList: [Dictionary<String, String>]) {
         self._firstName = firstName
         self._lastName = lastName
+        self._fullName = ("\(firstName) \(lastName)")
         self._siteLocation = siteLocation
-        self._gList = gList
-
+        self._ID = ID
+        
+        for g in gList {
+            guardians.append(g["Name"]!)
+        }
+        
     }
+    
+
 }

@@ -24,6 +24,7 @@ class LogsViewController: UIViewController, UITableViewDataSource, UITabBarDeleg
         self.title = date
         tableView.rowHeight = 80
         navBar.topItem?.title = date
+        
         // Do any additional setup after loading the view.
     }
 
@@ -39,8 +40,8 @@ class LogsViewController: UIViewController, UITableViewDataSource, UITabBarDeleg
             cell.studentName.text =  history.logs[indexPath.row].fullName
             cell.timeIn.text = history.logs[indexPath.row].ins
             cell.timeOut.text = history.logs[indexPath.row].out
-            cell.timeIn.text = history.logs[indexPath.row].ins
             cell.pickedUpBy.text = history.logs[indexPath.row].pickedUp
+            cell.droppedOffBy.text = history.logs[indexPath.row].droppedOff
             return cell
         } else {
             return LogsTableViewCell()

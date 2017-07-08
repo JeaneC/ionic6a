@@ -13,6 +13,7 @@ class LogTrack{
     private var _date: String!
     private var _ins: String!
     private var _out: String!
+    private var _droppedOff: String!
     private var _pickedUp: String!
     private var _fullName: String!
 //    private var _student: Student! // a bit advanced for now
@@ -41,12 +42,17 @@ class LogTrack{
         
     }
     
-    init(date: String, ins: String, out: String, pickedUp: String, fullName: String){
+    var droppedOff: String {
+        return _droppedOff
+    }
+    
+    init(date: String, ins: String, out: String, pickedUp: String, droppedOff: String, fullName: String){
         self._date = date
         self._ins = ins
         self._out = out
         self._pickedUp = pickedUp
         self._fullName = fullName
+        self._droppedOff = droppedOff
         
     }
 }

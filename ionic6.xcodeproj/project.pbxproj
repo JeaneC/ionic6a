@@ -12,12 +12,16 @@
 		412D46CB1F0D87A600E71269 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412D46C91F0D87A600E71269 /* Main.storyboard */; };
 		412D46CD1F0D87A600E71269 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 412D46CC1F0D87A600E71269 /* Assets.xcassets */; };
 		412D46D01F0D87A600E71269 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 412D46CE1F0D87A600E71269 /* LaunchScreen.storyboard */; };
-		4193AFDB1F0E9DCC00F9724B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4193AFDA1F0E9DCC00F9724B /* GoogleService-Info.plist */; };
 		4193AFE11F0EB6BD00F9724B /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFE01F0EB6BD00F9724B /* MainViewController.swift */; };
 		4193AFE41F0EB84900F9724B /* Student.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFE31F0EB84900F9724B /* Student.swift */; };
 		4193AFE91F0EDABE00F9724B /* LogTrack.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFE81F0EDABE00F9724B /* LogTrack.swift */; };
 		4193AFEC1F0EFF2D00F9724B /* History.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFEB1F0EFF2D00F9724B /* History.swift */; };
 		4193AFEE1F0F0B5E00F9724B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */; };
+		4193AFF31F0FBADC00F9724B /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF21F0FBADC00F9724B /* LogsViewController.swift */; };
+		4193AFF51F0FD95E00F9724B /* LogsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF41F0FD95E00F9724B /* LogsTableViewCell.swift */; };
+		4193AFF71F0FE2FF00F9724B /* AttendnanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF61F0FE2FF00F9724B /* AttendnanceTableViewCell.swift */; };
+		4193AFF91F10957700F9724B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4193AFF81F10957700F9724B /* GoogleService-Info.plist */; };
+		4193AFFB1F11241B00F9724B /* SiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFFA1F11241B00F9724B /* SiteViewController.swift */; };
 		CA976EFF9BA1A9C2D07A5F41 /* Pods_ionic6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */; };
 /* End PBXBuildFile section */
 
@@ -30,12 +34,16 @@
 		412D46CF1F0D87A600E71269 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		412D46D11F0D87A600E71269 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		4193AFD81F0E9CD900F9724B /* README.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; path = README.md; sourceTree = SOURCE_ROOT; };
-		4193AFDA1F0E9DCC00F9724B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4193AFE01F0EB6BD00F9724B /* MainViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
 		4193AFE31F0EB84900F9724B /* Student.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Student.swift; sourceTree = "<group>"; };
 		4193AFE81F0EDABE00F9724B /* LogTrack.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogTrack.swift; sourceTree = "<group>"; };
 		4193AFEB1F0EFF2D00F9724B /* History.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = History.swift; sourceTree = "<group>"; };
 		4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		4193AFF21F0FBADC00F9724B /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
+		4193AFF41F0FD95E00F9724B /* LogsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewCell.swift; sourceTree = "<group>"; };
+		4193AFF61F0FE2FF00F9724B /* AttendnanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendnanceTableViewCell.swift; sourceTree = "<group>"; };
+		4193AFF81F10957700F9724B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		4193AFFA1F11241B00F9724B /* SiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteViewController.swift; sourceTree = "<group>"; };
 		8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ionic6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB197389190EC97D3F5FD1F7 /* Pods-ionic6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.debug.xcconfig"; sourceTree = "<group>"; };
 		FE1DCF211F3561DC96BCEB05 /* Pods-ionic6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.release.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.release.xcconfig"; sourceTree = "<group>"; };
@@ -74,6 +82,7 @@
 		412D46C41F0D87A600E71269 /* ionic6 */ = {
 			isa = PBXGroup;
 			children = (
+				4193AFF11F0F2EE100F9724B /* Views */,
 				4193AFE21F0EB83E00F9724B /* Model */,
 				4193AFDF1F0EB53F00F9724B /* Controllers */,
 				4193AFEA1F0EF4D800F9724B /* Other */,
@@ -88,6 +97,8 @@
 				412D46C71F0D87A600E71269 /* LoginViewController.swift */,
 				4193AFE01F0EB6BD00F9724B /* MainViewController.swift */,
 				4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */,
+				4193AFF21F0FBADC00F9724B /* LogsViewController.swift */,
+				4193AFFA1F11241B00F9724B /* SiteViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -105,8 +116,8 @@
 		4193AFE51F0EB85900F9724B /* External Files */ = {
 			isa = PBXGroup;
 			children = (
+				4193AFF81F10957700F9724B /* GoogleService-Info.plist */,
 				412D46CE1F0D87A600E71269 /* LaunchScreen.storyboard */,
-				4193AFDA1F0E9DCC00F9724B /* GoogleService-Info.plist */,
 				412D46D11F0D87A600E71269 /* Info.plist */,
 				4193AFD81F0E9CD900F9724B /* README.md */,
 			);
@@ -121,6 +132,15 @@
 				412D46CC1F0D87A600E71269 /* Assets.xcassets */,
 			);
 			name = Other;
+			sourceTree = "<group>";
+		};
+		4193AFF11F0F2EE100F9724B /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				4193AFF41F0FD95E00F9724B /* LogsTableViewCell.swift */,
+				4193AFF61F0FE2FF00F9724B /* AttendnanceTableViewCell.swift */,
+			);
+			name = Views;
 			sourceTree = "<group>";
 		};
 		5E097905AAA1823532EFF783 /* Frameworks */ = {
@@ -203,10 +223,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				4193AFDB1F0E9DCC00F9724B /* GoogleService-Info.plist in Resources */,
 				412D46D01F0D87A600E71269 /* LaunchScreen.storyboard in Resources */,
 				412D46CD1F0D87A600E71269 /* Assets.xcassets in Resources */,
 				412D46CB1F0D87A600E71269 /* Main.storyboard in Resources */,
+				4193AFF91F10957700F9724B /* GoogleService-Info.plist in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -268,10 +288,14 @@
 				4193AFE11F0EB6BD00F9724B /* MainViewController.swift in Sources */,
 				4193AFE91F0EDABE00F9724B /* LogTrack.swift in Sources */,
 				412D46C81F0D87A600E71269 /* LoginViewController.swift in Sources */,
+				4193AFF71F0FE2FF00F9724B /* AttendnanceTableViewCell.swift in Sources */,
+				4193AFFB1F11241B00F9724B /* SiteViewController.swift in Sources */,
 				412D46C61F0D87A600E71269 /* AppDelegate.swift in Sources */,
 				4193AFEE1F0F0B5E00F9724B /* ProfileViewController.swift in Sources */,
 				4193AFEC1F0EFF2D00F9724B /* History.swift in Sources */,
 				4193AFE41F0EB84900F9724B /* Student.swift in Sources */,
+				4193AFF51F0FD95E00F9724B /* LogsTableViewCell.swift in Sources */,
+				4193AFF31F0FBADC00F9724B /* LogsViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -403,7 +427,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
@@ -418,7 +442,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 2;
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

@@ -1,10 +1,11 @@
 Mobile App Documentation Will Go Here
 
-jeane@ionic6.org
-i6pass
+This is ionic6 v2.0. This will remain a private repository for the security of ionic6.
 
-georgia@ionic6.org
+The App Requires a login to access any part of the database, everyone with an ionic6 email should have their own pass.
+This is a guest account login:
+Username: guest@guest.com
+Pass: guestpass
 
+I'll explain my app via it's controllers, as I can't really think of a more organized way to explain them
 
-When looking at the Student logs, Alpha out the delete and write buttons
-Alpha in the delete and write buttons when looking at logs

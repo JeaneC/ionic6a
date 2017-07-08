@@ -14,9 +14,16 @@ class LoginViewController: UIViewController {
     @IBOutlet weak var passwordField: UITextField!
     @IBOutlet weak var usernameField: UITextField!
     @IBOutlet var mainView: UIView!
+    @IBOutlet weak var signInMsg: UILabel!
+    
     
     var mainColor: UIColor!
     
+    
+    
+    @IBAction func skipPressed(_ sender: Any) {
+        performSegue(withIdentifier: "login", sender: self)
+    }
     override func viewDidLoad() {
         super.viewDidLoad()
         mainColor = mainView.backgroundColor
@@ -38,7 +45,8 @@ class LoginViewController: UIViewController {
                     print(u)
                     self.performSegue(withIdentifier: "login", sender: self)
                 } else {
-                    self.mainView.backgroundColor = UIColor.brown
+                    //self.mainView.backgroundColor = UIColor.brown
+                    self.signInMsg.alpha = 1.0
                     
                 }
             }

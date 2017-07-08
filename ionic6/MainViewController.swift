@@ -16,22 +16,33 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var tableView: UITableView!
     var ref: DatabaseReference!
+    var ref2: DatabaseReference!
     
     var options = ["Students","Attendance","History", "Head Count Check"]
-    var logs = ["10-24-1997","10-25-1997","10-26-1997", "10-27-1997"]
+    var logs = [String]()
     var students = [String]()
     var display = [String]()
-    var test = [String]()
-    var lStudents = [Student]()
     
+    var logKey = ""
+    var lLogs = [LogTrack]()
+    var lStudents = [Student]()
+    var lHistory = [History]()
+    var profileStudent: Student!
+    
+    var selectedHistory = History(date: "", logsB: [LogTrack]())
+    
+    var siteLocation = ""
     var studentsActive = true
-    var logsActive = true
+    var logsActive = false
+    var attendanceActive = false
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         ref = Database.database().reference()
+        ref2 = Database.database().reference()
         
-        tableView.rowHeight = 80
+        tableView.rowHeight = 30
         
         tableView.dataSource = self
         tableView.delegate = self
@@ -43,28 +54,82 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         self.display = self.students
         
-        // Do any additional setup after loading the view.
+
+        //loadStudents()
         
-        // Do any additional setup after loading the view, typically from a nib.
+    }
+    
+    func loadLogs(){
+        //Goes through each date
+        ref2?.child("Jersey").child("Dates").observe(.childAdded, with: { (snapshot) in
+            
+            
+
+            if !self.logs.contains(snapshot.key){ //If we haven't done this date yet
+                self.logs.append(snapshot.key)
+                
+                let cDate = snapshot.key as? String //This warning is false, since I get errors if I don't do this
+                var dateLog = [LogTrack]()
+
+                
+               let children = snapshot.value as? Dictionary<String,AnyHashable>
+                
+                for student in self.students {
+                    print(children!)
+                    let child = children?[student] as? Dictionary<String, AnyHashable>
+                    let cIn = child?["In"] as? String
+                    let cOut = child?["Out"] as? String
+                    let pUp = child?["Picked Up"] as? String
+                    let newLog = LogTrack(date: cDate!, ins: cIn!, out: cOut!, pickedUp: pUp!, fullName: student)
+                    dateLog.append(newLog)
+
+                }
+                let nHistory = History(date: cDate!, logsB: dateLog)
+                self.selectedHistory = nHistory
+                self.lHistory.append(nHistory)
+
+            }
+            if self.logsActive{
+                self.display = self.logs
+                self.tableView1.reloadData()
+            }
+        })
+        
+        
+        
+    }
+    
+    func loadStudents(){
         ref?.child("Jersey").child("Children").observe(.childAdded, with: { (snapshot) in
             
             //Code to execute when a child is added under "Posts"
             //Take the value from the snapshot and add it to the postData array
             
             //Convert the data into a string
-            if let child = snapshot.value as? Dictionary<AnyHashable, Any> {
+            if let child = snapshot.value as? Dictionary<AnyHashable, AnyHashable> {
+                
                 let f = child["First Name"] as? String
                 let l = child["Last Name"] as? String
                 let s = " "
+                let siteLocation = "Jersey City"
                 let fullName = f! + s + l!
-                self.test.append(fullName)
+                
+                
+                let gList = child["Authorized Guardians"] as? Dictionary<String, Dictionary<String,String>>
+                
+                
+                let studentA = Student(firstName: f!, lastName: l!, siteLocation: siteLocation, gList: gList!)
+                
+                if !self.students.contains(fullName){
+                    self.lStudents.append(studentA)
+                    self.students.append(fullName)
+                }
+                
+                
             }
-            self.students = self.test
             if self.studentsActive{
                 self.display = self.students
                 
-            } else {
-                //llogs version
             }
             self.tableView1.reloadData()
         })
@@ -73,30 +138,57 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     //Selected a section
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         if tableView == self.tableView {
-
+            
             if indexPath.row == 0 {
                 display = students
                 studentsActive = true
                 logsActive = false
+                attendanceActive = false
+                loadStudents()
                 
             }
             if indexPath.row == 1 {
+                display = students
+                studentsActive = false
+                attendanceActive = true
+                logsActive = false
+                loadStudents()
+                
+            }
+            if indexPath.row == 2 {
                 display = logs
                 studentsActive = false
                 logsActive = true
+                attendanceActive = false
+                loadLogs()
+                print("Got Here")
             }
             tableView1.reloadData()
         }
         if tableView == self.tableView1 {
-
-            if indexPath.row == 2 {
-                if studentsActive {
+            if studentsActive {
+                profileStudent = lStudents[indexPath.row]
                 performSegue(withIdentifier: "student", sender: self)
-                }
+            }
+            if logsActive {
+                selectedHistory = lHistory[indexPath.row]
+                performSegue(withIdentifier: "logs", sender: self)
             }
         }
+
     }
     
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if studentsActive{
+            let ProfileViewContoller = segue.destination as? ProfileViewController
+            ProfileViewContoller?.student = profileStudent
+        }
+        if logsActive{
+            let LogsViewContoller = segue.destination as? LogsViewController
+            //LogsViewContoller?.history = selectedHistory //Disable this segue for now
+            
+        }
+    }
     
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
@@ -113,7 +205,16 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         
         if tableView == self.tableView1 {
             cell = UITableViewCell()
-            cell?.textLabel?.text = display[indexPath.row]
+            
+            if attendanceActive{
+                let cellB = AttendnanceTableViewCell()
+                cellB.textLabel?.text = display[indexPath.row]
+                return cellB
+            } else {
+                
+                cell?.textLabel?.text = display[indexPath.row]
+//                cell?.switchA.alpha = 0
+            }
         }
         return cell!
         

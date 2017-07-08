@@ -9,14 +9,18 @@
 import Foundation
 
 class History {
-    private var logs = [LogTrack]()
-    private var dates = [String]()
+    var logs = [LogTrack]() // More of student logs
+    var date = ""
+    var students = [String]()
     
-    init(){
-        for log in logs {
-            dates.append(log.date)
-        }
-        //In this initializer we go through each log and take out the Date variable and put it into our dates
+    //private var dates = [String]()
+    
+    init(date: String, logsB: [LogTrack]){
+//        for log in logs {
+//            dates.append(log.date)
+//        }
+        self.date = date
+        self.logs = logsB
     }
     
     func openLog(){

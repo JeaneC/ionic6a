@@ -7,21 +7,21 @@
 	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
 	<string>ca-app-pub-3940256099942544/4411468910</string>
 	<key>CLIENT_ID</key>
-	<string>746754907540-t3ksohodo337g6vjltk8u577krgsaq12.apps.googleusercontent.com</string>
+	<string>850905901732-2p698prgpj21m4u8cecah70eo2sjdp1i.apps.googleusercontent.com</string>
 	<key>REVERSED_CLIENT_ID</key>
-	<string>com.googleusercontent.apps.746754907540-t3ksohodo337g6vjltk8u577krgsaq12</string>
+	<string>com.googleusercontent.apps.850905901732-2p698prgpj21m4u8cecah70eo2sjdp1i</string>
 	<key>API_KEY</key>
-	<string>AIzaSyBfZB8dyDj9YAL1I8LAlehaJ5a5sCVmNtw</string>
+	<string>AIzaSyAACcAokXOEpWw92WhB5nG0YNy00FwKg8A</string>
 	<key>GCM_SENDER_ID</key>
-	<string>746754907540</string>
+	<string>850905901732</string>
 	<key>PLIST_VERSION</key>
 	<string>1</string>
 	<key>BUNDLE_ID</key>
 	<string>i6.ionic6</string>
 	<key>PROJECT_ID</key>
-	<string>ionic6-3eb8b</string>
+	<string>ionic6-v2</string>
 	<key>STORAGE_BUCKET</key>
-	<string>ionic6-3eb8b.appspot.com</string>
+	<string>ionic6-v2.appspot.com</string>
 	<key>IS_ADS_ENABLED</key>
 	<true/>
 	<key>IS_ANALYTICS_ENABLED</key>
@@ -33,8 +33,8 @@
 	<key>IS_SIGNIN_ENABLED</key>
 	<true/>
 	<key>GOOGLE_APP_ID</key>
-	<string>1:746754907540:ios:fbb00535b9b71adb</string>
+	<string>1:850905901732:ios:fbb00535b9b71adb</string>
 	<key>DATABASE_URL</key>
-	<string>https://ionic6-3eb8b.firebaseio.com</string>
+	<string>https://ionic6-v2.firebaseio.com</string>
 </dict>
 </plist>

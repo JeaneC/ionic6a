@@ -43,14 +43,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        tableView.reloadData()
         print("Hello")
     }
-    
-    override func viewWillAppear(_ animated: Bool) {
-        super.viewWillAppear(animated)
-        print("Appeared")
-    }
-    
+
     func updatedStudentInformation(confirmed: Bool, studentNumber: Int){
         //This is the data we get back after the switch form is filled out
         

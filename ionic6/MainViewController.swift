@@ -43,6 +43,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var studentsActive = true
     var logsActive = false
     var attendanceActive = false
+    var headCheck = false
     
     
     override func viewDidAppear(_ animated: Bool) {
@@ -172,6 +173,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 studentsActive = true
                 logsActive = false
                 attendanceActive = false
+                headCheck = false
                 loadStudents()
                 self.tableView1.reloadData()
                 
@@ -181,6 +183,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 display = logs
                 studentsActive = false
                 attendanceActive = false
+                headCheck = false
                 logsActive = true
                 loadLogs()
                 self.tableView1.reloadData()
@@ -188,9 +191,18 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             if indexPath.row == 2 {
                 studentsActive = false
                 logsActive = false
+                headCheck = false
                 attendanceActive = true
                 performSegue(withIdentifier: "attendance", sender: self)
             }
+            if indexPath.row == 3 {
+                studentsActive = false
+                logsActive = false
+                headCheck = true
+                attendanceActive = false
+                performSegue(withIdentifier: "headCheck", sender: self)
+            }
+
             if indexPath.row == 4 {
                 dismiss(animated: true, completion: nil)
             }
@@ -224,6 +236,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             let AttendanceViewController = segue.destination as? AttendanceViewController
             AttendanceViewController?.students = self.lStudents
             AttendanceViewController?.siteDate = self.siteDate
+        }
+        if headCheck{
+            let HeadCheckViewController = segue.destination as? HeadCheckViewController
+            HeadCheckViewController?.students = self.lStudents
         }
     }
     

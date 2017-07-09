@@ -24,6 +24,7 @@
 		4193AFFB1F11241B00F9724B /* SiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFFA1F11241B00F9724B /* SiteViewController.swift */; };
 		4193AFFD1F11677B00F9724B /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFFC1F11677B00F9724B /* AttendanceViewController.swift */; };
 		4193B0011F11CB4B00F9724B /* AttendancePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B0001F11CB4B00F9724B /* AttendancePopViewController.swift */; };
+		4193B0031F128A2500F9724B /* HeadCheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B0021F128A2500F9724B /* HeadCheckViewController.swift */; };
 		CA976EFF9BA1A9C2D07A5F41 /* Pods_ionic6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */; };
 /* End PBXBuildFile section */
 
@@ -48,6 +49,7 @@
 		4193AFFA1F11241B00F9724B /* SiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteViewController.swift; sourceTree = "<group>"; };
 		4193AFFC1F11677B00F9724B /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
 		4193B0001F11CB4B00F9724B /* AttendancePopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendancePopViewController.swift; sourceTree = "<group>"; };
+		4193B0021F128A2500F9724B /* HeadCheckViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HeadCheckViewController.swift; sourceTree = "<group>"; };
 		8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ionic6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB197389190EC97D3F5FD1F7 /* Pods-ionic6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.debug.xcconfig"; sourceTree = "<group>"; };
 		FE1DCF211F3561DC96BCEB05 /* Pods-ionic6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.release.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.release.xcconfig"; sourceTree = "<group>"; };
@@ -105,6 +107,7 @@
 				4193AFF21F0FBADC00F9724B /* LogsViewController.swift */,
 				4193AFFC1F11677B00F9724B /* AttendanceViewController.swift */,
 				4193B0001F11CB4B00F9724B /* AttendancePopViewController.swift */,
+				4193B0021F128A2500F9724B /* HeadCheckViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -298,6 +301,7 @@
 				4193B0011F11CB4B00F9724B /* AttendancePopViewController.swift in Sources */,
 				4193AFFB1F11241B00F9724B /* SiteViewController.swift in Sources */,
 				412D46C61F0D87A600E71269 /* AppDelegate.swift in Sources */,
+				4193B0031F128A2500F9724B /* HeadCheckViewController.swift in Sources */,
 				4193AFEE1F0F0B5E00F9724B /* ProfileViewController.swift in Sources */,
 				4193AFEC1F0EFF2D00F9724B /* History.swift in Sources */,
 				4193AFE41F0EB84900F9724B /* Student.swift in Sources */,
@@ -435,7 +439,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
 		};
@@ -450,7 +454,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
-				TARGETED_DEVICE_FAMILY = 1;
+				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Release;
 		};

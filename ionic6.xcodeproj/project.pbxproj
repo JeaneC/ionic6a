@@ -19,9 +19,11 @@
 		4193AFEE1F0F0B5E00F9724B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */; };
 		4193AFF31F0FBADC00F9724B /* LogsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF21F0FBADC00F9724B /* LogsViewController.swift */; };
 		4193AFF51F0FD95E00F9724B /* LogsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF41F0FD95E00F9724B /* LogsTableViewCell.swift */; };
-		4193AFF71F0FE2FF00F9724B /* AttendnanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF61F0FE2FF00F9724B /* AttendnanceTableViewCell.swift */; };
+		4193AFF71F0FE2FF00F9724B /* AttendanceTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFF61F0FE2FF00F9724B /* AttendanceTableViewCell.swift */; };
 		4193AFF91F10957700F9724B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 4193AFF81F10957700F9724B /* GoogleService-Info.plist */; };
 		4193AFFB1F11241B00F9724B /* SiteViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFFA1F11241B00F9724B /* SiteViewController.swift */; };
+		4193AFFD1F11677B00F9724B /* AttendanceViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193AFFC1F11677B00F9724B /* AttendanceViewController.swift */; };
+		4193B0011F11CB4B00F9724B /* AttendancePopViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4193B0001F11CB4B00F9724B /* AttendancePopViewController.swift */; };
 		CA976EFF9BA1A9C2D07A5F41 /* Pods_ionic6.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */; };
 /* End PBXBuildFile section */
 
@@ -41,9 +43,11 @@
 		4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
 		4193AFF21F0FBADC00F9724B /* LogsViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsViewController.swift; sourceTree = "<group>"; };
 		4193AFF41F0FD95E00F9724B /* LogsTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LogsTableViewCell.swift; sourceTree = "<group>"; };
-		4193AFF61F0FE2FF00F9724B /* AttendnanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendnanceTableViewCell.swift; sourceTree = "<group>"; };
+		4193AFF61F0FE2FF00F9724B /* AttendanceTableViewCell.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceTableViewCell.swift; sourceTree = "<group>"; };
 		4193AFF81F10957700F9724B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		4193AFFA1F11241B00F9724B /* SiteViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = SiteViewController.swift; sourceTree = "<group>"; };
+		4193AFFC1F11677B00F9724B /* AttendanceViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendanceViewController.swift; sourceTree = "<group>"; };
+		4193B0001F11CB4B00F9724B /* AttendancePopViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = AttendancePopViewController.swift; sourceTree = "<group>"; };
 		8666CC61EE376B761B453BF1 /* Pods_ionic6.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ionic6.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		CB197389190EC97D3F5FD1F7 /* Pods-ionic6.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.debug.xcconfig"; sourceTree = "<group>"; };
 		FE1DCF211F3561DC96BCEB05 /* Pods-ionic6.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ionic6.release.xcconfig"; path = "Pods/Target Support Files/Pods-ionic6/Pods-ionic6.release.xcconfig"; sourceTree = "<group>"; };
@@ -99,6 +103,8 @@
 				4193AFE01F0EB6BD00F9724B /* MainViewController.swift */,
 				4193AFED1F0F0B5E00F9724B /* ProfileViewController.swift */,
 				4193AFF21F0FBADC00F9724B /* LogsViewController.swift */,
+				4193AFFC1F11677B00F9724B /* AttendanceViewController.swift */,
+				4193B0001F11CB4B00F9724B /* AttendancePopViewController.swift */,
 			);
 			name = Controllers;
 			sourceTree = "<group>";
@@ -138,7 +144,7 @@
 			isa = PBXGroup;
 			children = (
 				4193AFF41F0FD95E00F9724B /* LogsTableViewCell.swift */,
-				4193AFF61F0FE2FF00F9724B /* AttendnanceTableViewCell.swift */,
+				4193AFF61F0FE2FF00F9724B /* AttendanceTableViewCell.swift */,
 			);
 			name = Views;
 			sourceTree = "<group>";
@@ -288,7 +294,8 @@
 				4193AFE11F0EB6BD00F9724B /* MainViewController.swift in Sources */,
 				4193AFE91F0EDABE00F9724B /* LogTrack.swift in Sources */,
 				412D46C81F0D87A600E71269 /* LoginViewController.swift in Sources */,
-				4193AFF71F0FE2FF00F9724B /* AttendnanceTableViewCell.swift in Sources */,
+				4193AFF71F0FE2FF00F9724B /* AttendanceTableViewCell.swift in Sources */,
+				4193B0011F11CB4B00F9724B /* AttendancePopViewController.swift in Sources */,
 				4193AFFB1F11241B00F9724B /* SiteViewController.swift in Sources */,
 				412D46C61F0D87A600E71269 /* AppDelegate.swift in Sources */,
 				4193AFEE1F0F0B5E00F9724B /* ProfileViewController.swift in Sources */,
@@ -296,6 +303,7 @@
 				4193AFE41F0EB84900F9724B /* Student.swift in Sources */,
 				4193AFF51F0FD95E00F9724B /* LogsTableViewCell.swift in Sources */,
 				4193AFF31F0FBADC00F9724B /* LogsViewController.swift in Sources */,
+				4193AFFD1F11677B00F9724B /* AttendanceViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

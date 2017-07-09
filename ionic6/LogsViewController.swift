@@ -46,8 +46,8 @@ class LogsViewController: UIViewController, UITableViewDataSource, UITabBarDeleg
         } else {
             return LogsTableViewCell()
         }
-        
     }
+    
     @IBAction func organizedPressed(_ sender: Any) {
          dismiss(animated: true, completion: nil)
     }

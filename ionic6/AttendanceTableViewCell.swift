@@ -1,5 +1,5 @@
 //
-//  AttendnanceTableViewCell.swift
+//  AttendanceTableViewCell.swift
 //  ionic6
 //
 //  Created by Jeane Carlos on 7/7/17.
@@ -8,8 +8,9 @@
 
 import UIKit
 
-class AttendnanceTableViewCell: UITableViewCell {
+class AttendanceTableViewCell: UITableViewCell {
 
+    @IBOutlet weak var nameLbl: UILabel!
     @IBOutlet weak var switchA: UISwitch!
     
     override func awakeFromNib() {

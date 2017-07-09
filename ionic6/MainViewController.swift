@@ -12,11 +12,15 @@ import Firebase
 
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
+    var switchPressed = false
+
     
     @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var siteLabel: UILabel!
+    @IBOutlet weak var titleLabel: UILabel!
     
+    @IBOutlet weak var titelLabel: UILabel!
     var ref: DatabaseReference!
     var ref2: DatabaseReference!
     
@@ -37,9 +41,13 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var siteLocation = ""
     var studentsActive = true
     var logsActive = false
+    var attendanceActive = false
+    
     
     
     override func viewDidLoad() {
+        
+        // func reset (necessary for when viewing other sites)
         super.viewDidLoad()
         ref = Database.database().reference()
         ref2 = Database.database().reference()
@@ -70,7 +78,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             //This value is an Array of dictionaries
             //JK, that's what I thought, but the snapshots is the array element, making this
             //Conveniently just the dictionary
+            
             if let dateDirectory = snapshot.value as? Dictionary<String, AnyHashable> {
+                print(dateDirectory.count)
                 if let date = dateDirectory["Date"] as? String, !self.logs.contains(date){
                     //We get the current Date, and if the date is not in the log, then we do everything to add the date date there
                     
@@ -82,7 +92,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let name = student["Name"]
                             let pUp = student["Picked Up By"]
                             let dOff = student["Dropped Off By"]
-                            
+
                             let logA = LogTrack(date: date, ins: ins!, out: outs!, pickedUp: pUp!, droppedOff: dOff!, fullName: name!)
                             
                             self.lLogs.append(logA)
@@ -100,8 +110,8 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         })
         self.tableView1.reloadData()
     }
+    
     func loadStudents(){
-        
         ref?.child("Jersey City").observe(.childAdded, with: { (snapshot) in
             
             //Code to execute when a child is added under "Jersey City"
@@ -139,22 +149,30 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         //Selected a selection in the Options Pane
         if tableView == self.tableView {
             if indexPath.row == 0 {
+                self.titleLabel.text = "Students"
                 display = students
                 studentsActive = true
                 logsActive = false
+                attendanceActive = false
                 loadStudents()
                 self.tableView1.reloadData()
                 
             }
             if indexPath.row == 1 {
+                self.titleLabel.text = "Logs"
                 display = logs
                 studentsActive = false
+                attendanceActive = false
                 logsActive = true
                 loadLogs()
                 self.tableView1.reloadData()
             }
-            
-            tableView1.reloadData()
+            if indexPath.row == 2 {
+                studentsActive = false
+                logsActive = false
+                attendanceActive = true
+                performSegue(withIdentifier: "attendance", sender: self)
+            }
             if indexPath.row == 4 {
                 dismiss(animated: true, completion: nil)
             }
@@ -183,7 +201,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if logsActive{
             let LogsViewContoller = segue.destination as? LogsViewController
             LogsViewContoller?.history = selectedHistory
-            
+        }
+        if attendanceActive{
+            let AttendanceViewController = segue.destination as? AttendanceViewController
+            AttendanceViewController?.students = self.lStudents
         }
     }
     

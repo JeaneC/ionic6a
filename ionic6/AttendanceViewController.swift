@@ -10,7 +10,7 @@ import UIKit
 import Firebase
 
 
-class AttendanceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate {
+class AttendanceViewController: UIViewController, UITableViewDataSource, UITableViewDelegate, MyProtocol {
     
     var students = [Student]()
     var stringDate = ""
@@ -18,8 +18,14 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     var logList = [LogTrack]()
     var studentList = [Dictionary<String,String>]()
     var dateExists = false
-
-    var switchValueSent:Bool?
+    var siteLocation = ""
+    var siteDate = ""
+    
+    var trackingStudent: Student?
+    var trackingNumber: Int = 0
+    var trackingLog: LogTrack?
+    
+    //var valueSentFromSecondViewController:String = "Not KFC"
     
     let date = Date()
     let formatter = NumberFormatter()
@@ -35,8 +41,19 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     
 
     
-    func setValueFromPop(valueSent: Bool){
-        self.switchValueSent = valueSent
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        print("Hello")
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        print("Appeared")
+    }
+    
+    func updatedStudentInformation(confirmed: Bool, studentNumber: Int){
+        //This is the data we get back after the switch form is filled out
+        
     }
     
     override func viewDidLoad() {
@@ -48,13 +65,13 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         navBar.topItem?.title = stringDate
         
         //createLogs()
-
         
-        ref.child("jDates").observe(.value, with: { (snapshot) in
+        
+        ref.child("\(siteDate)").observe(.value, with: { (snapshot) in
             if let dateDirectoryB = snapshot.value as? Dictionary<String, AnyHashable> {
                 if (dateDirectoryB[self.stringDate] != nil){// Date Exists
                     self.logList.removeAll()
-
+                    
                     //Parse the Logs
                     let date = dateDirectoryB[self.stringDate] as? Dictionary<String, AnyHashable>
                     let students = date?["Students"] as? [Dictionary<String,String>]
@@ -67,8 +84,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                         let logA = LogTrack(date: self.stringDate, ins: lIn!, out: lOut!, pickedUp: lpUp!, droppedOff: ldOff!, fullName: lName!)
                         self.logList.append(logA)
                     }
-                    print(self.logList.count)
-                    print(self.students.count)
+                    
                 } else { //Date does not Exist
                     print("The Date Does Not Exist")
                     self.createLogs() //Create An Empty Set Of Logs
@@ -76,9 +92,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                 
             }
         })
+        
         tableView.reloadData()
         
     }
+    
     
     func droppedOff(studentIndexA: Int, droppedOff: String){
         //Need to create a prevention from opening this if the user accidently flicks on off
@@ -92,9 +110,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         
         let post = ["In" : time, "Dropped Off By" : droppedOff, "Name" : students[studentIndex].fullName, "Out": "", "Picked Up By": ""]
         
-        let childUpdates = ["/jDates/\(self.stringDate)/Students/\(studentIndex)": post]
+        let childUpdates = ["/\(siteDate)/\(self.stringDate)/Students/\(studentIndex)": post]
         ref.updateChildValues(childUpdates)
-
+        
+        
         
     }
     
@@ -108,12 +127,32 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         
         let post = ["In" : self.logList[studentIndexA].ins, "Dropped Off By" : self.logList[studentIndexA].droppedOff, "Name" : self.logList[studentIndexA].fullName, "Out": time, "Picked Up By": pickedUp]
         
-        let childUpdates = ["/jDates/\(self.stringDate)/Students/\(studentIndexA)": post]
+        let childUpdates = ["/\(siteDate)/\(self.stringDate)/Students/\(studentIndexA)": post]
         ref.updateChildValues(childUpdates)
         
         
     }
-
+    
+    @IBAction func switchPressed(_ sender: AnyObject) {
+        let buttonPosition = sender.convert(CGPoint(), to:tableView)
+        let indexPath = tableView.indexPathForRow(at: buttonPosition)
+        self.trackingStudent = students[(indexPath?.row)!]
+        self.trackingNumber = indexPath!.row
+        self.trackingLog = logList[(indexPath?.row)!]
+        
+        
+        performSegue(withIdentifier: "popUp", sender: buttonPosition)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        let AttendancePopViewContoller = segue.destination as? AttendancePopViewController
+        AttendancePopViewContoller?.student = self.trackingStudent
+        AttendancePopViewContoller?.trackingNumber = self.trackingNumber
+        AttendancePopViewContoller?.log = self.trackingLog
+        AttendancePopViewContoller?.delegate = self
+        
+    }
+    
     
     func createLogs(){
         for student in students {
@@ -135,20 +174,12 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         dateDirectory["Date"] = self.stringDate
         dateDirectory["Students"] = studentList
         
-
-        ref.child("jDates").child(self.stringDate).setValue(dateDirectory)
-//        print("Did It!")
+        ref.child("\(siteDate)").child(self.stringDate).setValue(dateDirectory)
+        
         
     }
     
-    func checkDate() -> Bool {
-        //Seems very inefficient way of doing this though
-
-        //This part of the code never executes... I'm not sure why
-        print(self.dateExists)
-        print("I like fried Chicken")
-        return dateExists
-    }
+    
     
     
     override func didReceiveMemoryWarning() {
@@ -160,6 +191,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         return 1
     }
     
+    @IBAction func refreshBtn(_ sender: Any) {
+        tableView.reloadData()
+    }
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.students.count
     }
@@ -167,28 +201,39 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         if let cell = tableView.dequeueReusableCell(withIdentifier: "attendanceCell", for: indexPath) as? AttendanceTableViewCell {
             cell.nameLbl.text = students[indexPath.row].fullName
+            
+            if logList[indexPath.row].ins == "" { //If there is no time
+                cell.switchA.setOn(false, animated: false)
+            } else if logList[indexPath.row].ins != "", logList[indexPath.row].out != "" { //There is an in value, but there is no out value
+                cell.switchA.setOn(false, animated: false)
+            } else {
+                cell.switchA.setOn(true, animated: false)
+            }
+            
             return cell
         } else {
             return AttendanceTableViewCell()
         }
     }
     
+    
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         pickedUp(studentIndexA: indexPath.row, pickedUp: "Jermaine Jackson")
     }
     
-    @IBAction func switchChanged(_ sender: Any) {
-        print("This Was Pressed")
-    }
     
-    /*
-    // MARK: - Navigation
+    //PROTOCOL
+    func setResult(trackingNumber: Int, completed: Bool, selectedParent: String, droppedOffTrue: Bool) {
 
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+        if completed {
+            if droppedOffTrue { //It is a drop off
+                droppedOff(studentIndexA: trackingNumber, droppedOff: selectedParent)
+            } else {
+                pickedUp(studentIndexA: trackingNumber, pickedUp: selectedParent)
+            }
+
+        }
+        
+        tableView.reloadData()
     }
-    */
-
 }

@@ -14,6 +14,7 @@ class Student {
     private var _fullName: String!
     private var _siteLocation: String!
     private var _ID: Int!
+    private var _leaveAlone: Bool!
     
     var guardians = [String]()
 
@@ -35,12 +36,18 @@ class Student {
         return _siteLocation
     }
     
-    init(firstName: String, lastName: String, siteLocation: String, ID: Int, gList: [Dictionary<String, String>]) {
+    var leaveAlone: Bool {
+        return _leaveAlone
+    }
+    
+    
+    init(firstName: String, lastName: String, siteLocation: String, ID: Int, gList: [Dictionary<String, String>], leaveAlone: Bool) {
         self._firstName = firstName
         self._lastName = lastName
         self._fullName = ("\(firstName) \(lastName)")
         self._siteLocation = siteLocation
         self._ID = ID
+        self._leaveAlone = leaveAlone
         
         for g in gList {
             guardians.append(g["Name"]!)

@@ -39,12 +39,20 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var selectedHistory = History(date: "", logsB: [LogTrack]())
     
     var siteLocation = ""
+    var siteDate = ""
     var studentsActive = true
     var logsActive = false
     var attendanceActive = false
     
     
-    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+        loadLogs()
+        loadStudents()
+        tableView1.reloadData()
+
+    }
     override func viewDidLoad() {
         
         // func reset (necessary for when viewing other sites)
@@ -71,8 +79,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadLogs(){
-        
-        ref?.child("jDates").observe(.childAdded, with: { (snapshot) in
+        if siteLocation == "Brooklyn" {
+            siteDate = "bDates"
+            
+        } else if siteLocation == "Queens" {
+            siteDate = "qDates"
+            
+        } else if siteLocation == "Jersey City"{
+            siteDate = "jDates"
+            
+        }
+        ref?.child("\(siteDate)").observe(.childAdded, with: { (snapshot) in
             
             //Code to execute when a child is added under "Jersey City"
             //This value is an Array of dictionaries
@@ -80,11 +97,11 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
             //Conveniently just the dictionary
             
             if let dateDirectory = snapshot.value as? Dictionary<String, AnyHashable> {
-                print(dateDirectory.count)
                 if let date = dateDirectory["Date"] as? String, !self.logs.contains(date){
                     //We get the current Date, and if the date is not in the log, then we do everything to add the date date there
                     
                     var logsTrack = [LogTrack]() //Fresh new array of logs
+                    
                     if let students = dateDirectory["Students"] as? [Dictionary<String, String>]{
                         for student in students {
                             let ins = student["In"]
@@ -112,7 +129,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     }
     
     func loadStudents(){
-        ref?.child("Jersey City").observe(.childAdded, with: { (snapshot) in
+        ref?.child("\(siteLocation)").observe(.childAdded, with: { (snapshot) in
             
             //Code to execute when a child is added under "Jersey City"
             //This value is an Array of dictionaries
@@ -128,8 +145,9 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                     let sL = "Jersey City"
                     let fullName = "\(f!) \(l!)"
                     let gList = child["Guardians"] as? [Dictionary<String, String>]
+                    let aloneValue = child["LeaveAlone"] as? Bool
                     
-                    let studentA = Student(firstName: f!, lastName: l!, siteLocation: sL, ID: ID, gList: gList!)
+                    let studentA = Student(firstName: f!, lastName: l!, siteLocation: sL, ID: ID, gList: gList!, leaveAlone: aloneValue!)
                     
                     self.students.append(fullName)
                     self.lStudents.append(studentA)
@@ -205,6 +223,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         if attendanceActive{
             let AttendanceViewController = segue.destination as? AttendanceViewController
             AttendanceViewController?.students = self.lStudents
+            AttendanceViewController?.siteDate = self.siteDate
         }
     }
     

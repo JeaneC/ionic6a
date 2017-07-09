@@ -86,7 +86,7 @@
                                     <constraint firstItem="Jlo-jJ-DFo" firstAttribute="leading" secondItem="zIE-rc-Ee5" secondAttribute="leading" id="iip-z0-w0I"/>
                                 </constraints>
                             </stackView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXy-ak-8Dm">
+                            <button opaque="NO" alpha="0.0" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="IXy-ak-8Dm">
                                 <rect key="frame" x="317" y="619" width="58" height="48"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                 <state key="normal" title="Skip"/>
@@ -683,6 +683,11 @@
                                                 <action selector="backPressed:" destination="7CP-Fo-A18" id="fn0-ub-0Wd"/>
                                             </connections>
                                         </barButtonItem>
+                                        <barButtonItem key="rightBarButtonItem" systemItem="refresh" id="7QE-sn-faB">
+                                            <connections>
+                                                <action selector="refreshBtn:" destination="7CP-Fo-A18" id="LYy-Fg-f3G"/>
+                                            </connections>
+                                        </barButtonItem>
                                     </navigationItem>
                                 </items>
                             </navigationBar>
@@ -706,7 +711,7 @@
                                                 <switch opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" contentHorizontalAlignment="center" contentVerticalAlignment="center" translatesAutoresizingMaskIntoConstraints="NO" id="2eI-qi-iiV">
                                                     <rect key="frame" x="308" y="29.5" width="51" height="31"/>
                                                     <connections>
-                                                        <segue destination="2LA-tV-rq6" kind="presentation" identifier="showPopUp" id="DCe-4M-9AW"/>
+                                                        <action selector="switchPressed:" destination="7CP-Fo-A18" eventType="valueChanged" id="Duq-EB-wVS"/>
                                                     </connections>
                                                 </switch>
                                             </subviews>
@@ -719,6 +724,7 @@
                                         </tableViewCellContentView>
                                         <connections>
                                             <outlet property="nameLbl" destination="q5U-Xd-HkH" id="KEr-ev-MCW"/>
+                                            <outlet property="switchA" destination="2eI-qi-iiV" id="6zG-br-WPy"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
@@ -742,6 +748,7 @@
                     <connections>
                         <outlet property="navBar" destination="MbQ-2b-COu" id="wbQ-Xa-0bU"/>
                         <outlet property="tableView" destination="7D6-8Q-KsV" id="AdR-Eq-5am"/>
+                        <segue destination="2LA-tV-rq6" kind="presentation" identifier="popUp" modalPresentationStyle="overCurrentContext" modalTransitionStyle="crossDissolve" id="bbP-qW-dyX"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="yaM-oL-1ia" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -764,24 +771,24 @@
                                 <rect key="frame" x="30" y="183" width="315" height="300"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="xoQ-wi-NWU">
-                                        <rect key="frame" x="92.5" y="20" width="130.5" height="47"/>
+                                        <rect key="frame" x="73.5" y="20" width="168.5" height="61"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Alicia Keys" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="CD2-W2-kxX">
-                                                <rect key="frame" x="0.0" y="0.0" width="130.5" height="23.5"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="168.5" height="30.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
                                                 <color key="textColor" red="0.99989169836044312" green="1" blue="0.99988096952438354" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Dropped Off By:" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Zkn-Eh-bg3">
-                                                <rect key="frame" x="0.0" y="23.5" width="130.5" height="23.5"/>
-                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="17"/>
+                                                <rect key="frame" x="0.0" y="30.5" width="168.5" height="30.5"/>
+                                                <fontDescription key="fontDescription" name="AvenirNext-DemiBold" family="Avenir Next" pointSize="22"/>
                                                 <color key="textColor" red="0.99989169840000003" green="1" blue="0.99988096950000005" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                     </stackView>
                                     <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="LX5-De-8XF">
-                                        <rect key="frame" x="-2.5" y="87" width="320" height="100"/>
+                                        <rect key="frame" x="-2.5" y="101" width="320" height="100"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="100" id="HKO-la-9SB"/>
                                         </constraints>
@@ -831,7 +838,10 @@
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="dropText" destination="Zkn-Eh-bg3" id="9mK-LS-p4b"/>
                         <outlet property="mainView" destination="rJe-Kx-gq4" id="Iuv-Yx-24t"/>
+                        <outlet property="pickerView" destination="LX5-De-8XF" id="F9m-38-hCo"/>
+                        <outlet property="studentName" destination="CD2-W2-kxX" id="24I-nB-Fb3"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="vuh-km-P3h" userLabel="First Responder" sceneMemberID="firstResponder"/>

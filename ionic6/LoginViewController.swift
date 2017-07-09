@@ -22,7 +22,7 @@ class LoginViewController: UIViewController {
     
     
     @IBAction func skipPressed(_ sender: Any) {
-        performSegue(withIdentifier: "login", sender: self)
+        //performSegue(withIdentifier: "login", sender: self)
     }
     override func viewDidLoad() {
         super.viewDidLoad()

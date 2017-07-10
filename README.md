@@ -1,8 +1,10 @@
 Mobile App Documentation Will Go Here
 
-This is ionic6 v2.0. This will remain a private repository for the security of ionic6.
+This is the ionic6 mobile App for iOS
 
-The App Requires a login to access any part of the database, everyone with an ionic6 email should have their own pass.
+This will remain a private repository for the security of ionic6.
+
+The App Requires a login to access any part of the database, everyone with an ionic6 email should have their own pass. It is their ionic6 email and then it is followed by the password: ionic6
 
 This is a guest account login:
 
@@ -10,15 +12,21 @@ Username: guest@guest.com
 
 Pass: guestpass
 
+The App Is Currently Fully Functional as of V 1.0.
 
-I'll explain my app via it's controllers, as I can't really think of a more organized way to explain them.
+Features Include
+- Full incorporation of Firebase. All data displayed is online. If any data is changed, the app will update it immediately
+- Ability to navigate between 3 site locations
+- Ability to view past history logs
+- Ability to check the attendance in real time (Meaning if the attendance is updated else where, it will update in the app as well)
+- Ability to do a "Head Check", which is a convenient way of checking to see if all students are present at a certain location
 
+Bugs/Needs Fixing
+- Sometimes certain pieces of data won't show. For instance when navigating initially between Students and History, sometimes the logs will not show, sometimes the students won't show.
+    - This error is most likely due to time. Firebase does synchronize in real time, but users who immediately select an option might barely beat Firebase's server time.
+    - The simple fix to this is to just go back to the option after selected another option
+    - Or pressing back, and then coming back
 
-LoginVC and Site VC
-- Simple Login page. I created accounts manually because we are a small group so far, and to prevent outsiders from creating accounts
-- SiteVC just allows you to choose a site location
-
-
-First Commit
-- LoginVC and SiteVC are good to go.
-
+Features Wishlist
+- Ability to create students
+- Storing images online, and then acessing them (Student Profile Pictures)

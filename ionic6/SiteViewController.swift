@@ -32,8 +32,8 @@ class SiteViewController: UIViewController {
         performSegue(withIdentifier: "siteLocation", sender: self)
     }
     @IBAction func queensBtn(_ sender: UIButton) {
-//        self.siteLocation = "Queens"
-//        performSegue(withIdentifier: "siteLocation", sender: self)
+        self.siteLocation = "Queens"
+        performSegue(withIdentifier: "siteLocation", sender: self)
     }
 
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {

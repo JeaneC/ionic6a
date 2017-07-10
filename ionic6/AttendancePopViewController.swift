@@ -12,7 +12,7 @@ protocol MyProtocol {
     func setResult(trackingNumber: Int, completed: Bool, selectedParent: String, droppedOffTrue: Bool)
 }
 
-class AttendancePopViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate{
+class AttendancePopViewController: UIViewController, UIPickerViewDataSource, UIPickerViewDelegate, UITextFieldDelegate{
 
     var complete = false
     var student: Student!
@@ -23,12 +23,15 @@ class AttendancePopViewController: UIViewController, UIPickerViewDataSource, UIP
 
     var delegate: MyProtocol?
     var droppedOff: Bool!
+    var otherTrue = false
 
 
     @IBOutlet weak var pickerView: UIPickerView!
     @IBOutlet weak var dropText: UILabel!
     @IBOutlet weak var mainView: UIView!
     @IBOutlet weak var studentName: UILabel!
+
+    @IBOutlet weak var textField: UITextField!
     
 
     
@@ -37,6 +40,7 @@ class AttendancePopViewController: UIViewController, UIPickerViewDataSource, UIP
         mainView.layer.cornerRadius = 15
         self.pickerView.delegate = self
         self.pickerView.dataSource = self
+
         
         studentName.text = student.fullName
         if log.ins == "" {
@@ -50,16 +54,16 @@ class AttendancePopViewController: UIViewController, UIPickerViewDataSource, UIP
         gList = student.guardians
         
         if student.leaveAlone {
-            gList.append("Self")
+            gList.append("Self (Permitted)")
             
         }
+        
+        gList.append("Other(Type In Manually)")
+
         parentValue = student.guardians[0] //Set a default value
         
         pickerView.reloadAllComponents()
-
         
-        
-        // Do any additional setup after loading the view.
     }
     
     func numberOfComponents(in pickerView: UIPickerView) -> Int {
@@ -76,32 +80,44 @@ class AttendancePopViewController: UIViewController, UIPickerViewDataSource, UIP
     
     func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
         parentValue = gList[row]
+        if row == gList.count-1 {
+            textField.alpha = 1
+            otherTrue = true
+        } else {
+            textField.alpha = 0
+            otherTrue = false
+        }
     }
     override func didReceiveMemoryWarning() {
         super.didReceiveMemoryWarning()
         // Dispose of any resources that can be recreated.
     }
     
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        resignFirstResponder()
+        view.endEditing(true)
+    }
     
-
     @IBAction func cancelPressed(_ sender: Any) {
         delegate?.setResult(trackingNumber: trackingNumber, completed: false, selectedParent: parentValue, droppedOffTrue: droppedOff)
         dismiss(animated: true, completion: nil)
     }
     @IBAction func confirmPressed(_ sender: Any) {
+        if otherTrue {
+            parentValue = textField.text
+        }
         delegate?.setResult(trackingNumber: trackingNumber, completed: true, selectedParent: parentValue, droppedOffTrue: droppedOff)
         dismiss(animated: true, completion: nil)
     }
     
 
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destinationViewController.
-        // Pass the selected object to the new view controller.
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.text = ""
     }
-    */
+    
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.view.endEditing(true)
+        return false
+    }
 
 }

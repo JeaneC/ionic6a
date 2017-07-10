@@ -13,7 +13,7 @@ import Firebase
 class MainViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
     
     var switchPressed = false
-
+    
     
     @IBOutlet weak var tableView1: UITableView!
     @IBOutlet weak var tableView: UITableView!
@@ -24,7 +24,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     var ref: DatabaseReference!
     var ref2: DatabaseReference!
     
-    var options = ["Students","History","Attendance","Head Count Check","Back"]
+    var options = ["Students","History","Attendance","Head Check","Back"]
     var logs = [String]()
     var students = [String]()
     var studentIDS = [Int]()
@@ -48,11 +48,17 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
+        logsActive = false
+        attendanceActive = false
+        headCheck = false
+        studentsActive = true
+        self.titleLabel.text = "Students"
+        
         
         loadLogs()
         loadStudents()
         tableView1.reloadData()
-
+        
     }
     override func viewDidLoad() {
         
@@ -110,7 +116,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let name = student["Name"]
                             let pUp = student["Picked Up By"]
                             let dOff = student["Dropped Off By"]
-
+                            
                             let logA = LogTrack(date: date, ins: ins!, out: outs!, pickedUp: pUp!, droppedOff: dOff!, fullName: name!)
                             
                             self.lLogs.append(logA)
@@ -193,6 +199,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 logsActive = false
                 headCheck = false
                 attendanceActive = true
+                tableView.deselectRow(at: indexPath, animated: true)
                 performSegue(withIdentifier: "attendance", sender: self)
             }
             if indexPath.row == 3 {
@@ -200,9 +207,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                 logsActive = false
                 headCheck = true
                 attendanceActive = false
+                tableView.deselectRow(at: indexPath, animated: true)
                 performSegue(withIdentifier: "headCheck", sender: self)
             }
-
+            
             if indexPath.row == 4 {
                 dismiss(animated: true, completion: nil)
             }

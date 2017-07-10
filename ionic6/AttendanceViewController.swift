@@ -44,7 +44,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         tableView.reloadData()
-        print("Hello")
     }
 
     func updatedStudentInformation(confirmed: Bool, studentNumber: Int){
@@ -59,9 +58,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         formatter2.dateFormat = "MMddyyyy"
         stringDate = formatter2.string(from: date)
         navBar.topItem?.title = stringDate
-        
-        //createLogs()
-        
         
         ref.child("\(siteDate)").observe(.value, with: { (snapshot) in
             if let dateDirectoryB = snapshot.value as? Dictionary<String, AnyHashable> {
@@ -99,7 +95,9 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let studentIndex = studentIndexA
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
-        let time = "\(hour):\(minutes)"
+        let tMinutes = formatter.string(from: NSNumber(integerLiteral: Int(minutes)))
+        
+        let time = "\(hour):\(tMinutes!)"
         
         logList[studentIndexA].ins = time
         logList[studentIndexA].droppedOff = droppedOff
@@ -116,7 +114,10 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     func pickedUp(studentIndexA: Int, pickedUp: String){
         let hour = calendar.component(.hour, from: date)
         let minutes = calendar.component(.minute, from: date)
-        let time = "\(hour):\(minutes)"
+        let tMinutes = formatter.string(from: NSNumber(integerLiteral: Int(minutes)))
+        
+        let time = "\(hour):\(tMinutes!)"
+        
         
         logList[studentIndexA].out = time
         logList[studentIndexA].pickedUp = pickedUp
@@ -205,7 +206,6 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             } else {
                 cell.switchA.setOn(true, animated: false)
             }
-            
             return cell
         } else {
             return AttendanceTableViewCell()
@@ -214,7 +214,7 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
     
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        pickedUp(studentIndexA: indexPath.row, pickedUp: "Jermaine Jackson")
+//        pickedUp(studentIndexA: indexPath.row, pickedUp: "Jermaine Jackson")
     }
     
     

@@ -15,6 +15,8 @@ class LogsTableViewCell: UITableViewCell {
     @IBOutlet weak var timeIn: UILabel!
     @IBOutlet weak var timeOut: UILabel!
     @IBOutlet weak var droppedOffBy: UILabel!
+    @IBOutlet weak var authDropLbl: UILabel!
+    @IBOutlet weak var authPickLbl: UILabel!
     
     override func awakeFromNib() {
         super.awakeFromNib()

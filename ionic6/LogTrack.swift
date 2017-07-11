@@ -16,6 +16,8 @@ class LogTrack{
     var droppedOff: String!
     var pickedUp: String!
     var fullName: String!
+    var authDrop: String = ""
+    var authPick: String = ""
 //    private var _student: Student! // a bit advanced for now
     
     

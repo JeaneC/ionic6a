@@ -30,3 +30,14 @@ Bugs/Needs Fixing
 Features Wishlist
 - Ability to create students
 - Storing images online, and then acessing them (Student Profile Pictures)
+
+
+V 1.5
+Features Added
+- The device now properly displays who authorized/confirmed each form. Handy for tracking which instructor logs a person in or out.
+- Updated the UI for history logs
+
+Features Wishlist
+- Ability to create students (still)
+- Storing images(still)
+- 

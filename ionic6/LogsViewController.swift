@@ -18,6 +18,7 @@ class LogsViewController: UIViewController, UITableViewDataSource, UITabBarDeleg
     var date = ""
     
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
         date = self.history.date
@@ -42,6 +43,9 @@ class LogsViewController: UIViewController, UITableViewDataSource, UITabBarDeleg
             cell.timeOut.text = history.logs[indexPath.row].out
             cell.pickedUpBy.text = history.logs[indexPath.row].pickedUp
             cell.droppedOffBy.text = history.logs[indexPath.row].droppedOff
+            cell.authDropLbl.text = history.logs[indexPath.row].authDrop
+            cell.authPickLbl.text = history.logs[indexPath.row].authPick
+            
             return cell
         } else {
             return LogsTableViewCell()

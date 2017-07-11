@@ -117,7 +117,10 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
                             let pUp = student["Picked Up By"]
                             let dOff = student["Dropped Off By"]
                             
-                            let logA = LogTrack(date: date, ins: ins!, out: outs!, pickedUp: pUp!, droppedOff: dOff!, fullName: name!)
+                            var logA = LogTrack(date: date, ins: ins!, out: outs!, pickedUp: pUp!, droppedOff: dOff!, fullName: name!)
+                            
+                            logA.authPick = student["AuthPick"]!
+                            logA.authDrop = student["AuthDrop"]!
                             
                             self.lLogs.append(logA)
                             logsTrack.append(logA)

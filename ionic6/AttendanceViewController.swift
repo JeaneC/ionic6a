@@ -73,7 +73,11 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
                         let lName = student["Name"]
                         let ldOff = student["Dropped Off By"]
                         let lpUp = student["Picked Up By"]
-                        let logA = LogTrack(date: self.stringDate, ins: lIn!, out: lOut!, pickedUp: lpUp!, droppedOff: ldOff!, fullName: lName!)
+                        let authPickB = student["AuthPick"]
+                        let authDropB = student["AuthDrop"]
+                        var logA = LogTrack(date: self.stringDate, ins: lIn!, out: lOut!, pickedUp: lpUp!, droppedOff: ldOff!, fullName: lName!)
+                        logA.authPick = authPickB!
+                        logA.authDrop = authDropB!
                         self.logList.append(logA)
                     }
                     
@@ -102,7 +106,8 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         logList[studentIndexA].ins = time
         logList[studentIndexA].droppedOff = droppedOff
         
-        let post = ["In" : time, "Dropped Off By" : droppedOff, "Name" : students[studentIndex].fullName, "Out": "", "Picked Up By": ""]
+        logList[studentIndexA].authDrop = userName
+        let post = ["In" : time, "Dropped Off By" : droppedOff, "Name" : students[studentIndex].fullName, "Out": "", "Picked Up By": "", "AuthDrop": logList[studentIndexA].authDrop, "AuthPick": logList[studentIndexA].authPick]
         
         let childUpdates = ["/\(siteDate)/\(self.stringDate)/Students/\(studentIndex)": post]
         ref.updateChildValues(childUpdates)
@@ -117,12 +122,13 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
         let tMinutes = formatter.string(from: NSNumber(integerLiteral: Int(minutes)))
         
         let time = "\(hour):\(tMinutes!)"
-        
-        
+
         logList[studentIndexA].out = time
         logList[studentIndexA].pickedUp = pickedUp
         
-        let post = ["In" : self.logList[studentIndexA].ins, "Dropped Off By" : self.logList[studentIndexA].droppedOff, "Name" : self.logList[studentIndexA].fullName, "Out": time, "Picked Up By": pickedUp]
+        logList[studentIndexA].authPick = userName
+        
+        let post = ["In" : self.logList[studentIndexA].ins, "Dropped Off By" : self.logList[studentIndexA].droppedOff, "Name" : self.logList[studentIndexA].fullName, "Out": time, "Picked Up By": pickedUp, "AuthDrop": logList[studentIndexA].authDrop, "AuthPick": logList[studentIndexA].authPick]
         
         let childUpdates = ["/\(siteDate)/\(self.stringDate)/Students/\(studentIndexA)": post]
         ref.updateChildValues(childUpdates)
@@ -164,6 +170,8 @@ class AttendanceViewController: UIViewController, UITableViewDataSource, UITable
             studentDict["Name"] = log.fullName
             studentDict["Picked Up By"] = ""
             studentDict["Dropped Off By"] = ""
+            studentDict["AuthPick"] = ""
+            studentDict["AuthDrop"] = ""
             studentList.append(studentDict)
         }
         

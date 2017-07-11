@@ -7,14 +7,36 @@
 //
 
 import UIKit
+import FirebaseAuth
+
+var userName = ""
 
 class SiteViewController: UIViewController {
     
     var siteLocation = ""
 
+
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+        if Auth.auth().currentUser != nil {
+            let user = Auth.auth().currentUser
+            if let user = user {
+                // The user's ID, unique to the Firebase project.
+                // Do NOT use this value to authenticate with your backend server,
+                // if you have one. Use getTokenWithCompletion:completion: instead.
+                
+                userName = user.email!
+                let endIndex = userName.index(userName.endIndex, offsetBy: -11)
+                userName = userName.substring(to: endIndex).capitalized
+ 
+            }
+        } else {
+            // No user is signed in.
+            // ...
+        }
 
+        
         // Do any additional setup after loading the view.
     }
 

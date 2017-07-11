@@ -22,7 +22,7 @@ class LogsViewController: UIViewController, UITableViewDataSource, UITabBarDeleg
         super.viewDidLoad()
         date = self.history.date
         self.title = date
-        tableView.rowHeight = 100
+        tableView.rowHeight = 120
         navBar.topItem?.title = date
         
         // Do any additional setup after loading the view.

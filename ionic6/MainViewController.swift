@@ -79,7 +79,7 @@ class MainViewController: UIViewController, UITableViewDelegate, UITableViewData
         tableView1.register(UITableViewCell.self, forCellReuseIdentifier: "logs")
         
         self.display = self.students
-        
+        print(userName)
         loadLogs()
         loadStudents()
         

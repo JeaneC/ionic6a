@@ -204,7 +204,7 @@
 				TargetAttributes = {
 					412D46C11F0D87A600E71269 = {
 						CreatedOnToolsVersion = 8.3.3;
-						DevelopmentTeam = KBNDZ88Q3N;
+						DevelopmentTeam = 3NQC4C76KE;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -433,10 +433,10 @@
 			baseConfigurationReference = CB197389190EC97D3F5FD1F7 /* Pods-ionic6.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KBNDZ88Q3N;
+				DEVELOPMENT_TEAM = 3NQC4C76KE;
 				INFOPLIST_FILE = ionic6/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6b;
+				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -448,10 +448,10 @@
 			baseConfigurationReference = FE1DCF211F3561DC96BCEB05 /* Pods-ionic6.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
-				DEVELOPMENT_TEAM = KBNDZ88Q3N;
+				DEVELOPMENT_TEAM = 3NQC4C76KE;
 				INFOPLIST_FILE = ionic6/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6b;
+				PRODUCT_BUNDLE_IDENTIFIER = i6.ionic6;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 3.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
